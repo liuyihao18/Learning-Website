@@ -1,0 +1,36 @@
+.information {
+    display: flex;
+    margin: 1em auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.author {
+    padding: 0 1em;
+}
+
+.author .avatar {
+    max-width: 150px;
+}
+
+.author-name {
+    color: #555;
+    font-weight: 600;
+    margin: .5em auto;
+    text-align: center;
+}
+
+.description {
+    color: #999;
+    font-size: 0.8125em;
+    margin: .5em auto;
+    text-align: center;
+}
+
+.content {
+    padding: 0 1em;
+}
+
+dd {
+    text-indent: 2em;
+}

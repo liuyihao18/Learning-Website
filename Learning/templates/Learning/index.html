@@ -1,0 +1,32 @@
+{% extends 'custom.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'Learning/css/index.css' %}"/>
+{% endblock %}
+
+{% block main %}
+    <div class="information">
+        <div class="author">
+            <img class="avatar" src="{% static 'assets/images/avatar.jpg' %}" alt="avatar"/>
+            <p class="author-name">刘怡豪</p>
+            <p class="description">开心最重要(●'◡'●)</p>
+        </div>
+        <div class="content">
+            <dl>
+                <dt>作者：</dt>
+                <dd>刘怡豪</dd>
+                <dt>邮箱：</dt>
+                <dd><a class="link-info"
+                       href="mailto:liuyihao18@mails.tsinghua.edu.cn">liuyihao18@mails.tsinghua.edu.cn</a></dd>
+                <dt>平台：</dt>
+                <dd>
+                    Python: {{ python_version }}
+                </dd>
+                <dd>
+                    Pytorch: {{ pytorch_version }}
+                </dd>
+            </dl>
+        </div>
+    </div>
+{% endblock %}

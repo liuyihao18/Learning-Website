@@ -1,5 +1,36 @@
-#logo {
+.container {
+    width: 800px;
+}
+
+header {
+    display: flex;
+    align-items: center;
+}
+
+h1 {
+    flex-grow: 1;
+}
+
+.logo {
     height: 128px;
+}
+
+.avatar {
+    border: 1px solid #eee;
+    display: block;
+    margin: 0 auto;
+    padding: 2px;
+    border-radius: 50%;
+    transition: transform 1s ease-in-out;
+}
+
+.avatar:hover {
+    transform: rotate(360deg);
+}
+
+header .avatar {
+    max-width: 75px;
+    max-height: 75px;
 }
 
 footer {
