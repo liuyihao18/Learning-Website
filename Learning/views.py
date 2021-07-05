@@ -1,7 +1,9 @@
 import platform
 import torch
 
+from django.shortcuts import redirect
 from django.shortcuts import render
+
 
 
 # Create your views here.
@@ -22,4 +24,4 @@ def train_index(request):
 
 
 def post(request):
-    pass
+    return redirect('/result/')
