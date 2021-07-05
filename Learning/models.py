@@ -11,4 +11,6 @@ class ModelInfo(models.Model):
     epochs = models.IntegerField()
     task = models.CharField(max_length=64)
     person = models.CharField(max_length=64)
+    begin_time = models.DateTimeField(auto_now_add=True)
+    finish_time = models.DateTimeField(null=True)
     state = models.CharField(max_length=64)
