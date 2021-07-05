@@ -1,3 +1,14 @@
 from django.db import models
 
+
 # Create your models here.
+class ModelInfo(models):
+    id = models.IntegerField(primary_key=True)
+    model = models.CharField(max_length=64)
+    optimizer = models.CharField(max_length=64)
+    learning_rate = models.FloatField()
+    batch_size = models.IntegerField()
+    epochs = models.IntegerField()
+    task = models.CharField(max_length=64)
+    person = models.CharField(max_length=64)
+    state = models.CharField(max_length=64)

@@ -19,3 +19,7 @@ def train_index(request):
         'active': 'train'
     }
     return render(request, 'Learning/train.html', context)
+
+
+def post(request):
+    pass
