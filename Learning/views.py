@@ -45,6 +45,21 @@ def result_index(request, page_num=1):
 
 
 def post(request):
+    args = {
+        'id': int(time.time()),
+        'model': request.POST['model'],
+        'optimizer': request.POST['optimizer'],
+        'learning_rate': request.POST['learning_rate'],
+        'batch_size': request.POST['batch_size'],
+        'epochs': request.POST['epochs'],
+        'task': request.POST['task'],
+        'person': request.POST['person'],
+        'state': 'train',
+        'num_classes': 10,
+        'use_gpu': True,
+        'data_path': 'data',
+        'save_path': 'result',
+    }
     models.ModelInfo.objects.create(
         id=int(time.time()),
         model=request.POST['model'],
