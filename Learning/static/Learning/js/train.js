@@ -53,6 +53,8 @@ window.addEventListener('load', function () {
         }
         if (!can_submit) {
             e.preventDefault();
+        } else {
+            alert('模型开始训练');
         }
     });
 });
