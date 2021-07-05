@@ -25,7 +25,7 @@ def train_index(request):
     return render(request, 'Learning/train.html', context)
 
 
-def result_index(request):
+def result_index(request, page_num=1):
     context = {
         'active': 'result'
     }
