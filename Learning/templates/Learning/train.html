@@ -1,0 +1,58 @@
+{% extends 'custom.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'Learning/css/train.css' %}"/>
+    <script src="{% static 'Learning/js/train.js' %}"></script>
+{% endblock %}
+
+{% block main %}
+    <div class="form">
+        <form method="get" novalidate>
+            <div class="mb-3">
+                <label for="model" class="form-label">模型结构</label>
+                <select id="model" name="model" class="form-select" required>
+                    <option value="LeNet">LeNet</option>
+                </select>
+                <div class="invalid-feedback">请选择一项</div>
+            </div>
+            <div class="mb-3">
+                <label for="optimizer" class="form-label">优化器</label>
+                <select id="optimizer" name="optimizer" class="form-select" required>
+                    <option value="Adam">Adam</option>
+                    <option value="SGD">SGD</option>
+                </select>
+                <div class="invalid-feedback">请选择一项</div>
+            </div>
+            <div class="mb-3">
+                <label for="learning_rate" class="form-label">学习率</label>
+                <input type="number" id="learning_rate" name="learning_rate" class="form-control" min="0.00001"
+                       max="1.0" step="0.00001" value="0.001" placeholder="0.001" required/>
+                <div class="invalid-feedback">请填写1e-5到1的浮点数</div>
+            </div>
+            <div class="mb-3">
+                <label for="batch_size" class="form-label">批次大小</label>
+                <input type="number" id="batch_size" name="batch_size" class="form-control" min="1"
+                       max="512" step="1" value="256" placeholder="256" required/>
+                <div class="invalid-feedback">请填写1到512的正整数</div>
+            </div>
+            <div class="mb-3">
+                <label for="epochs" class="form-label">训练轮次</label>
+                <input type="number" id="epochs" name="epochs" class="form-control" min="1"
+                       max="100" step="1" value="100" placeholder="100" required/>
+                <div class="invalid-feedback">请填写1-100的正整数</div>
+            </div>
+            <div class="mb-3">
+                <label for="task" class="form-label">任务名称</label>
+                <input type="text" id="task" name="task" class="form-control" placeholder="Task name" required/>
+                <div class="invalid-feedback">请填写此项</div>
+            </div>
+            <div class="mb-3">
+                <label for="person" class="form-label">发起人</label>
+                <input type="text" id="person" name="person" class="form-control" placeholder="Person name" required/>
+                <div class="invalid-feedback">请填写此项</div>
+            </div>
+            <button type="submit" class="btn btn-primary">开始训练</button>
+        </form>
+    </div>
+{% endblock %}

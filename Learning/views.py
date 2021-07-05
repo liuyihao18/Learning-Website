@@ -18,4 +18,4 @@ def train_index(request):
     context = {
         'active': 'train'
     }
-    return render(request, 'Learning/train/index.html', context)
+    return render(request, 'Learning/train.html', context)

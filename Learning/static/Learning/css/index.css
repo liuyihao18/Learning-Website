@@ -1,8 +1,8 @@
 .information {
     display: flex;
-    margin: 1em auto;
     align-items: center;
     justify-content: center;
+    margin: 1em auto;
 }
 
 .author {
