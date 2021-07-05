@@ -21,7 +21,7 @@ from django.urls import path
 urlpatterns = [
     path('', Learning.views.learning_index),
     path('train/', Learning.views.train_index),
-    path('result/', Learning.views.learning_index),
+    path('result/', Learning.views.result_index),
     path('post/', Learning.views.post),
     path('admin/', admin.site.urls),
 ]

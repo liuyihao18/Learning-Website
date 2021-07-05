@@ -25,6 +25,13 @@ def train_index(request):
     return render(request, 'Learning/train.html', context)
 
 
+def result_index(request):
+    context = {
+        'active': 'result'
+    }
+    return render(request, 'Learning/result.html', context)
+
+
 def post(request):
     print(request.POST)
     models.ModelInfo.objects.create(
