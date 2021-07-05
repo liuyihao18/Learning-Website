@@ -8,7 +8,8 @@
 
 {% block main %}
     <div class="form">
-        <form method="get" novalidate>
+        <form method="post" action="/post/" novalidate>
+            {% csrf_token %}
             <div class="mb-3">
                 <label for="model" class="form-label">模型结构</label>
                 <select id="model" name="model" class="form-select" required>

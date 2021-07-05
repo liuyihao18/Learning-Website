@@ -2,7 +2,7 @@ from django.db import models
 
 
 # Create your models here.
-class ModelInfo(models):
+class ModelInfo(models.Model):
     id = models.IntegerField(primary_key=True)
     model = models.CharField(max_length=64)
     optimizer = models.CharField(max_length=64)
