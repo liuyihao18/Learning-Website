@@ -1,3 +1,4 @@
+import datetime
 import platform
 import time
 
@@ -27,6 +28,15 @@ def train_index(request):
 
 def result_index(request, page_num=1):
     objs = models.ModelInfo.objects.all().order_by('-id')  # 增加'-'表示逆序
+    # (objs[0].begin_time - objs[1].begin_time).total_seconds()  # Time操作
+    print(objs.count())
+    print()
+    for obj in objs:
+        obj.finish_time = datetime.datetime.now()
+        print(obj.begin_time)
+        print(obj.finish_time)
+        obj.save()
+
     # TODO: 把数据表用table分页显示出来
     context = {
         'active': 'result'
