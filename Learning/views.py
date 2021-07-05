@@ -26,6 +26,8 @@ def train_index(request):
 
 
 def result_index(request, page_num=1):
+    objs = models.ModelInfo.objects.all().order_by('-id')  # 增加'-'表示逆序
+    # TODO: 把数据表用table分页显示出来
     context = {
         'active': 'result'
     }
@@ -33,7 +35,6 @@ def result_index(request, page_num=1):
 
 
 def post(request):
-    print(request.POST)
     models.ModelInfo.objects.create(
         id=int(time.time()),
         model=request.POST['model'],
