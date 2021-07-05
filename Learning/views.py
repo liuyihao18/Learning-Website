@@ -12,3 +12,10 @@ def learning_index(request):
         'pytorch_version': torch.__version__
     }
     return render(request, 'Learning/index.html', context)
+
+
+def train_index(request):
+    context = {
+        'active': 'train'
+    }
+    return render(request, 'Learning/train/index.html', context)
