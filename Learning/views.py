@@ -4,11 +4,12 @@ import time
 
 import torch
 
-import models
-import constants
-
 from django.shortcuts import redirect
 from django.shortcuts import render
+from django.utils import timezone
+
+from . import models
+from . import constants
 
 
 # Create your views here.
@@ -28,16 +29,12 @@ def train_index(request):
     return render(request, 'Learning/train.html', context)
 
 
-def result_index(request, page_num=1):
+def result_index(request, page=1):
     objs = models.ModelInfo.objects.all().order_by('-id')  # 增加'-'表示逆序
-    # (objs[0].begin_time - objs[1].begin_time).total_seconds()  # Time操作
+
     print(objs.count())
-    print()
     for obj in objs:
-        obj.finish_time = datetime.datetime.now()
-        print(obj.begin_time)
-        print(obj.finish_time)
-        obj.save()
+        print(obj.__dict__)
 
     # TODO: 把数据表用table分页显示出来
     context = {
@@ -48,7 +45,6 @@ def result_index(request, page_num=1):
 
 def post(request):
     args = {
-        'id': int(time.time()),
         'model': request.POST['model'],
         'optimizer': request.POST['optimizer'],
         'learning_rate': request.POST['learning_rate'],
@@ -59,5 +55,4 @@ def post(request):
         'state': 'train',
     }
     models.ModelInfo.objects.create(**args)
-    args.update(constants.extra_args)
     return redirect('/result/')
