@@ -28,3 +28,6 @@ col_names = [
 ]
 
 page_size = 10
+
+time_pattern = '%Y/%m/%d %H:%M'
+during_time_pattern = '%H:%M'
