@@ -1,6 +1,7 @@
 import datetime
 import math
 import platform
+import re
 import time
 
 import torch
@@ -32,7 +33,7 @@ def train_index(request):
 
 def result_index(request, page=1):
     objs = models.ModelInfo.objects.all().order_by('-id')  # 增加'-'表示逆序
-    max_page = math.ceil(objs.count() / constants.page_size)  # 最大页数
+    max_page = max(math.ceil(objs.count() / constants.page_size), 1)  # 最大页数
     if page < 1:
         return redirect('/result/1/')  # 重定向
     if page > max_page:
@@ -64,12 +65,29 @@ def result_index(request, page=1):
                        (not obj.finish_time and '-------------------'),
         'state': obj.state,
     }, objs))
+
+    # 左右切换
+    left_enable = True
+    left_url = '/result/' + str(min(1, page - 1)) + '/'
+    right_enable = True
+    right_url = '/result/' + str(max(max_page, page + 1)) + '/'
+    if page == 1:
+        left_enable = False
+    if page == max_page:
+        right_enable = False
+
     # 内容填充
     context = {
         'active': 'result',
         'cols': constants.cols,
         'col_names': constants.col_names,
         'objs': objs,
+        'now_page': page,
+        'total_page': max_page,
+        'left_enable': left_enable,
+        'left_url': left_url,
+        'right_enable': right_enable,
+        'right_url': right_url,
     }
     return render(request, 'Learning/result.html', context)
 
@@ -86,4 +104,4 @@ def post(request):
         'state': 'train',
     }
     models.ModelInfo.objects.create(**args)
-    return redirect('/result/')
+    return redirect('/result/1/')
