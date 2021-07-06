@@ -24,7 +24,7 @@ urlpatterns = [
     path('result/', Learning.views.task_list_index),
     path('result/<int:page>/', Learning.views.task_list_index),
     path('result/<int:page>/<str:anything>/', Learning.views.task_list_index),
-    path('result/<int:page>/<int:item>/<str:want>/', Learning.views.result_index),
+    path('result/<int:page>/<int:item>/log/', Learning.views.log_index),
     path('post/', Learning.views.post),
     path('admin/', admin.site.urls),
 ]

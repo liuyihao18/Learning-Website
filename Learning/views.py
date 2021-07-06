@@ -56,7 +56,9 @@ def task_list_index(request, page=None, anything=None):
     return render(request, 'Learning/result/task_list.html', context)
 
 
-def log_index(request, item):
+def log_index(request, page, item):
+    context = logic.get_log_context(page, item)
+    return render(request, 'Learning/result/log.html', context)
     pass
 
 

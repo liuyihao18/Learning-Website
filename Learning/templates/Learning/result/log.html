@@ -1,0 +1,15 @@
+{% extends 'Learning/base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'Learning/css/result/log.css' %}"/>
+{% endblock %}
+
+{% block main %}
+    <div class="log-container">
+        <div class="log-content">{{ log_content }}</div>
+        <div class="controller">
+            <a class="btn btn-primary" href="{{ return_url }}">返回</a>
+        </div>
+    </div>
+{% endblock %}
