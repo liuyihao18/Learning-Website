@@ -4,8 +4,9 @@ import torch
 from django.shortcuts import redirect
 from django.shortcuts import render
 
-from . import models
-from . import logic
+from Learning import interface
+from Learning import logic
+from Learning import models
 
 
 # Create your views here.
@@ -51,7 +52,9 @@ def post(request):
         'epochs': request.POST['epochs'],
         'task': request.POST['task'],
         'person': request.POST['person'],
-        'state': 'train',
+        'state': 'wait',
     }
     models.ModelInfo.objects.create(**args)
+    task = interface.Task(models.ModelInfo.objects.last().id)
+    task.start()
     return redirect('/result/1/')
