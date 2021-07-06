@@ -66,7 +66,7 @@ def instance(args: dict) -> None:
     initialize(args['data_path'], args['save_path'])
     name = str(args['id'])
     # 重定向
-    log = open(args['save_path'] + os.sep + 'log' + os.sep + name + ".log", 'w')
+    log = open(args['save_path'] + os.sep + args['log'] + os.sep + name + ".log", 'w')
     sys.stdout = log
 
     print('--------------------------------------------------------------------')
@@ -111,8 +111,9 @@ def instance(args: dict) -> None:
                                     shuffle=True, device=device)
 
     # 绘制结果
-    plot.plot_loss_curve(loss=loss, save_path=args['save_path'] + os.sep + 'loss_curve', name=name)
-    plot.plot_accuracy_curve(accuracy=accuracy, save_path=args['save_path'] + os.sep + 'accuracy_curve', name=name)
+    plot.plot_loss_curve(loss=loss, save_path=args['save_path'] + os.sep + args['loss_curve'], name=name)
+    plot.plot_accuracy_curve(accuracy=accuracy, save_path=args['save_path'] + os.sep + args['accuracy_curve'],
+                             name=name)
     log.close()
 
     if __name__ == '__main__':

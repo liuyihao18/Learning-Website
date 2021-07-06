@@ -74,7 +74,8 @@ def get_task_list_context(page):
 
 def get_log_context(page, item):
     try:
-        log = open(constants.extra_args['save_path'] + os.sep + 'log' + os.sep + str(item) + ".log", 'r')
+        log = open(
+            constants.extra_args['save_path'] + os.sep + constants.extra_args['log'] + os.sep + str(item) + ".log", 'r')
         log_content = log.read()
         log.close()
     except FileNotFoundError:
@@ -90,6 +91,8 @@ def get_analysis_context(page, item):
     context = {
         'return_url': '/result/' + str(page) + '/',
         'item': item,
+        'loss_curve': constants.extra_args['loss_curve'],
+        'accuracy_curve': constants.extra_args['accuracy_curve'],
     }
     return context
 
@@ -98,6 +101,26 @@ def get_delete_context(page, item):
     if models.ModelInfo.objects.filter(id=item):
         obj = models.ModelInfo.objects.get(id=item)
         obj.delete()
+        try:
+            # 删除log
+            os.remove(
+                constants.extra_args['save_path'] + os.sep + constants.extra_args['log'] + os.sep + str(item) + ".log")
+        except FileNotFoundError:
+            pass
+        try:
+            # 删除loss curve
+            os.remove(
+                constants.extra_args['save_path'] + os.sep + constants.extra_args['loss_curve'] + os.sep + str(
+                    item) + ".png")
+        except FileNotFoundError:
+            pass
+        try:
+            # 删除accuracy_curve
+            os.remove(
+                constants.extra_args['save_path'] + os.sep + constants.extra_args['accuracy_curve'] + os.sep + str(
+                    item) + ".log")
+        except FileNotFoundError:
+            pass
     context = {
         'redirect': '/result/' + str(page) + '/',
     }

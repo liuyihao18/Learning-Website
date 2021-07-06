@@ -34,21 +34,25 @@ def task_list_index(request, page=None, anything=None):
     if anything is not None:
         return redirect('/result/' + str(page) + '/')
     context = logic.get_task_list_context(page)
+    context['active'] = 'result'
     return render(request, 'Learning/result/task_list.html', context)
 
 
 def log_index(request, page, item):
     context = logic.get_log_context(page, item)
+    context['active'] = 'result'
     return render(request, 'Learning/result/log.html', context)
 
 
 def analysis_index(request, page, item):
     context = logic.get_analysis_context(page, item)
+    context['active'] = 'result'
     return render(request, 'Learning/result/analysis.html', context)
 
 
-def delete(request, item):
-    pass
+def delete(request, page, item):
+    context = logic.get_delete_context(page, item)
+    return redirect(context['redirect'])
 
 
 def post(request):

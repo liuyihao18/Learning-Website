@@ -5,6 +5,9 @@ extra_args = {
     'use_gpu': True,
     'data_path': 'Learning' + os.sep + 'learning' + os.sep + 'data',
     'save_path': 'Learning' + os.sep + 'static' + os.sep + 'Learning' + os.sep + 'assets',
+    'log': 'log',
+    'loss_curve': 'loss_curve',
+    'accuracy_curve': 'accuracy_curve',
 }
 
 cols = [
