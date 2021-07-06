@@ -6,38 +6,40 @@
 {% endblock %}
 
 {% block main %}
-    <div class="table-container">
-        <table class="table">
-            <thead>
-            <tr>
-                {% for col_name in col_names %}
-                    <th scope="col">{{ col_name }}</th>
-                {% endfor %}
-            </tr>
-            </thead>
-            <tbody>
-            {% for obj in objs %}
+    <div class="{{ want }}">
+        <div class="table-container">
+            <table class="table">
+                <thead>
                 <tr>
-                    <th scope="row">{{ obj.id }}</th>
-                    <td>{{ obj.task }}</td>
-                    <td>{{ obj.person }}</td>
-                    <td>{{ obj.begin_time }}</td>
-                    <td>{{ obj.during_time }}</td>
-                    <td>{{ obj.finish_time }}</td>
-                    <td>{{ obj.state }}</td>
-                    <td><a class="want" href="/result/{{ now_page }}/{{ obj.id }}/log/">训练日志</a> |
-                        <a class="want" href="/result/{{ now_page }}/{{ obj.id }}/result/">查看结果</a>
-                    </td>
+                    {% for col_name in col_names %}
+                        <th scope="col">{{ col_name }}</th>
+                    {% endfor %}
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-        <div class="page-controller">
-            <a class="switch {% if not left_enable %}disabled{% endif %}"
-               {% if left_enable %}href="{{ left_url }}"{% endif %}>上一页</a>
-            &nbsp;第 {{ now_page }} / {{ total_page }} 页&nbsp;
-            <a class="switch {% if not right_enable %}disabled{% endif %}"
-               {% if right_enable %}href="{{ right_url }}"{% endif %}>下一页</a>
+                </thead>
+                <tbody>
+                {% for obj in objs %}
+                    <tr>
+                        <th scope="row">{{ obj.id }}</th>
+                        <td>{{ obj.task }}</td>
+                        <td>{{ obj.person }}</td>
+                        <td>{{ obj.begin_time }}</td>
+                        <td>{{ obj.during_time }}</td>
+                        <td>{{ obj.finish_time }}</td>
+                        <td><span class="{{ obj.raw_state }}">{{ obj.state }}</span></td>
+                        <td><a class="want" href="/result/{{ now_page }}/{{ obj.id }}/log/">训练日志</a> |
+                            <a class="want" href="/result/{{ now_page }}/{{ obj.id }}/result/">查看结果</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="page-controller">
+                <a class="switch {% if not left_enable %}disabled{% endif %}"
+                   {% if left_enable %}href="{{ left_url }}"{% endif %}>上一页</a>
+                &nbsp;第 {{ now_page }} / {{ total_page }} 页&nbsp;
+                <a class="switch {% if not right_enable %}disabled{% endif %}"
+                   {% if right_enable %}href="{{ right_url }}"{% endif %}>下一页</a>
+            </div>
         </div>
     </div>
 {% endblock %}

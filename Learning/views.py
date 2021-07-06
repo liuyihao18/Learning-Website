@@ -31,7 +31,7 @@ def train_index(request):
     return render(request, 'Learning/train.html', context)
 
 
-def result_index(request, page=1, item=1, want='log'):
+def result_index(request, page=1, item=None, want=None):
     objs = models.ModelInfo.objects.all().order_by('-id')  # 增加'-'表示逆序
     max_page = max(math.ceil(objs.count() / constants.page_size), 1)  # 最大页数
     if page < 1:
@@ -63,7 +63,8 @@ def result_index(request, page=1, item=1, want='log'):
                  change_to_hours_minutes_seconds((timezone.now() - obj.begin_time).seconds))),
         'finish_time': (obj.finish_time and obj.finish_time.astimezone(tz).strftime(constants.time_pattern)) or
                        (not obj.finish_time and '-------------------'),
-        'state': obj.state,
+        'raw_state': obj.state,
+        'state': constants.translate[obj.state],
     }, objs))
 
     # 左右切换
@@ -88,6 +89,7 @@ def result_index(request, page=1, item=1, want='log'):
         'left_url': left_url,
         'right_enable': right_enable,
         'right_url': right_url,
+        'want': want or 'table',
     }
     return render(request, 'Learning/result.html', context)
 

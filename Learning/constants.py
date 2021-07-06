@@ -27,6 +27,12 @@ col_names = [
     '操作',
 ]
 
+translate = {
+    'train': '训练中',
+    'failure': '训练失败',
+    'success': '训练完成',
+}
+
 page_size = 10
 
 time_pattern = '%Y/%m/%d %H:%M'
