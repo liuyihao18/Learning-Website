@@ -26,7 +26,11 @@
                     <td>{{ obj.during_time }}</td>
                     <td>{{ obj.finish_time }}</td>
                     <td><span class="{{ obj.raw_state }}">{{ obj.state }}</span></td>
-                    <td><a class="log-operate" href="/result/{{ now_page }}/{{ obj.id }}/log/">日志</a> |
+                    <td>
+                        <a class="log-operate {% if obj.raw_state == 'wait' %}disabled{% endif %}"
+                                {% if obj.raw_state != 'wait' %}
+                           href="/result/{{ now_page }}/{{ obj.id }}/log/"
+                                {% endif %}>日志</a> |
                         <a class="result-operate {% if not obj.raw_state == 'success' %}disabled{% endif %}"
                                 {% if obj.raw_state == 'success' %}
                            href="/result/{{ now_page }}/{{ obj.id }}/analysis/"

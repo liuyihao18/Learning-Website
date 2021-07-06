@@ -79,7 +79,7 @@ def get_log_context(page, item):
         log_content = log.read()
         log.close()
     except FileNotFoundError:
-        log_content = 'Sorry, can\'t find log (id = ' + str(item) + ')!'
+        log_content = '404 Not Found!'
     context = {
         'return_url': '/result/' + str(page) + '/',
         'log_content': log_content,
@@ -94,6 +94,8 @@ def get_analysis_context(page, item):
         'loss_curve': constants.extra_args['loss_curve'],
         'accuracy_curve': constants.extra_args['accuracy_curve'],
     }
+    if not models.ModelInfo.objects.filter(id=item):
+        context['not_found'] = True
     return context
 
 

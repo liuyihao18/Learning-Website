@@ -8,12 +8,16 @@
 {% block main %}
     <div class="analysis-container">
         <div class="analysis-content">
-            <h3>损失曲线</h3>
-            <img class="image-card" src="{% static 'Learning/assets/' %}{{ loss_curve }}/{{ item }}.png"
-                 alt="loss curve"/>
-            <h3>精度曲线</h3>
-            <img class="image-card" src="{% static 'Learning/assets/' %}{{ accuracy_curve }}/{{ item }}.png"
-                 alt="accuracy curve"/>
+            {% if not_found %}
+                404 Not Found!
+            {% else %}
+                <h3>损失曲线</h3>
+                <img class="image-card" src="{% static 'Learning/assets/' %}{{ loss_curve }}/{{ item }}.png"
+                     alt="loss curve"/>
+                <h3>精度曲线</h3>
+                <img class="image-card" src="{% static 'Learning/assets/' %}{{ accuracy_curve }}/{{ item }}.png"
+                     alt="accuracy curve"/>
+            {% endif %}
         </div>
         <div class="controller">
             <a class="btn btn-primary" href="{{ return_url }}">返回</a>

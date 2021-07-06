@@ -35,7 +35,10 @@ def task_list_index(request, page=None, anything=None):
         return redirect('/result/' + str(page) + '/')
     context = logic.get_task_list_context(page)
     context['active'] = 'result'
-    return render(request, 'Learning/result/task_list.html', context)
+    if 'redirect' in context:
+        return redirect(context['redirect'])
+    else:
+        return render(request, 'Learning/result/task_list.html', context)
 
 
 def log_index(request, page, item):

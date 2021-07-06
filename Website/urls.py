@@ -23,7 +23,6 @@ urlpatterns = [
     path('train/', Learning.views.train_index),
     path('result/', Learning.views.task_list_index),
     path('result/<int:page>/', Learning.views.task_list_index),
-    path('result/<int:page>/<str:anything>/', Learning.views.task_list_index),
     path('result/<int:page>/<int:item>/log/', Learning.views.log_index),
     path('result/<int:page>/<int:item>/analysis/', Learning.views.analysis_index),
     path('result/<int:page>/<int:item>/delete/', Learning.views.delete),

@@ -103,7 +103,7 @@ def instance(args: dict) -> None:
         model = LeNet(num_classes=args['num_classes'])
     else:
         model = LeNet(num_classes=args['num_classes'])
-
+    
     # 模型训练
     loss, accuracy = train_evaluate(model=model, train_dataset=train_dataset, test_dataset=test_dataset,
                                     epochs=args['epochs'], batch_size=args['batch_size'],
