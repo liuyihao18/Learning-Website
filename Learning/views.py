@@ -4,9 +4,11 @@ import time
 
 import torch
 
+import models
+import constants
+
 from django.shortcuts import redirect
 from django.shortcuts import render
-from . import models
 
 
 # Create your views here.
@@ -57,10 +59,5 @@ def post(request):
         'state': 'train',
     }
     models.ModelInfo.objects.create(**args)
-    args.update({
-        'num_classes': 10,
-        'use_gpu': True,
-        'data_path': 'data',
-        'save_path': 'result',
-    })
+    args.update(constants.extra_args)
     return redirect('/result/')
