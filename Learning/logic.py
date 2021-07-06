@@ -32,17 +32,19 @@ def get_table_context(page):
         'id': obj.id,
         'task': obj.task,
         'person': obj.person,
-        'begin_time': obj.begin_time.astimezone(tz).strftime(constants.time_pattern),
+        'add_time': obj.add_time.astimezone(tz).strftime(constants.time_pattern),
         'during_time': (
                 (obj.finish_time and
-                 change_to_hours_minutes_seconds((obj.finish_time - obj.begin_time).seconds)) or
+                 change_to_hours_minutes_seconds((obj.finish_time - obj.add_time).seconds)) or
                 (not obj.finish_time and
-                 change_to_hours_minutes_seconds((timezone.now() - obj.begin_time).seconds))),
+                 change_to_hours_minutes_seconds((timezone.now() - obj.add_time).seconds))),
         'finish_time': (obj.finish_time and obj.finish_time.astimezone(tz).strftime(constants.time_pattern)) or
                        (not obj.finish_time and '-------------------'),
         'raw_state': obj.state,
         'state': constants.translate[obj.state],
     }, objs))
+    for i in range(len(objs)):
+        objs[i]['item'] = left + i + 1
 
     # 左右切换
     left_enable = True

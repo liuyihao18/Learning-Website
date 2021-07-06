@@ -1,3 +1,4 @@
+import datetime
 import os
 import threading
 
@@ -22,8 +23,10 @@ class Task(threading.Thread):
             return
         obj = models.ModelInfo.objects.get(id=self.id)
         obj.state = 'train'
+        obj.begin_time = timezone.now()
         obj.save()
         args = obj.__dict__
+        args['begin_time'] = obj.begin_time
         args.update(constants.extra_args)
         try:
             main.instance(args)

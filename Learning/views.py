@@ -1,4 +1,6 @@
 import platform
+import time
+
 import torch
 
 from django.shortcuts import redirect
@@ -47,6 +49,7 @@ def result_index(request, page=1, item=1, want='table'):
 
 def post(request):
     args = {
+        'id': int(time.time() * 1000),
         'model': request.POST['model'],
         'optimizer': request.POST['optimizer'],
         'learning_rate': request.POST['learning_rate'],

@@ -21,10 +21,10 @@
                     <tbody>
                     {% for obj in objs %}
                         <tr>
-                            <th scope="row">{{ obj.id }}</th>
+                            <th scope="row">{{ obj.item }}</th>
                             <td>{{ obj.task }}</td>
                             <td>{{ obj.person }}</td>
-                            <td>{{ obj.begin_time }}</td>
+                            <td>{{ obj.add_time }}</td>
                             <td>{{ obj.during_time }}</td>
                             <td>{{ obj.finish_time }}</td>
                             <td><span class="{{ obj.raw_state }}">{{ obj.state }}</span></td>

@@ -74,7 +74,8 @@ def instance(args: dict) -> None:
     print('ID:', args['id'])
     print('Task:', args['task'])
     print('Person:', args['person'])
-    print('Begin time:', datetime.datetime.now().strftime(time_pattern))
+    print('Begin time:',
+          args['begin_time'].astimezone(datetime.timezone(datetime.timedelta(hours=+8))).strftime(time_pattern))
 
     # 打印训练信息
     print('Use model:', args['model'])
@@ -114,7 +115,6 @@ def instance(args: dict) -> None:
     plot.plot_accuracy_curve(accuracy=accuracy, save_path=args['save_path'] + os.sep + 'accuracy_curve', name=name)
     log.close()
 
-
-if __name__ == '__main__':
-    # 调用入口函数
-    instance(parse_args().__dict__)
+    if __name__ == '__main__':
+        # 调用入口函数
+        instance(parse_args().__dict__)
