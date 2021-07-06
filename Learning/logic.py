@@ -1,5 +1,6 @@
 import math
 import datetime
+import os
 
 from django.utils import timezone
 
@@ -70,8 +71,15 @@ def get_table_context(page):
 
 
 def get_log_context(page, item):
+    try:
+        log = open(constants.extra_args['save_path'] + os.sep + 'log' + os.sep + str(item) + ".log", 'r')
+        log_content = log.read()
+        log.close()
+    except FileNotFoundError:
+        log_content = 'Sorry, can\'t find log (id = ' + str(item) + ')!'
     context = {
         'return_url': '/result/' + str(page) + '/',
+        'log_content': log_content,
     }
     return context
 
