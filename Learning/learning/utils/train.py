@@ -57,7 +57,7 @@ def train_evaluate(model: torch.nn.Module, train_dataset: Dataset, test_dataset:
         loss_epochs.append(loss_epoch)  # 保存loss
         if evaluate_mode:
             accuracy_epochs.append(evaluate(model, test_loader, device))  # 在测试集上测试
-        print('-----------------------------------------------------------------')
+        print('--------------------------------------------------------------------')
         sys.stdout.flush()
 
     return loss_epochs, accuracy_epochs
