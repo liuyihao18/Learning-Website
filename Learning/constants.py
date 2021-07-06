@@ -1,8 +1,10 @@
+import os
+
 extra_args = {
     'num_classes': 10,
     'use_gpu': True,
-    'data_path': 'data',
-    'save_path': 'result',
+    'data_path': 'Learning' + os.sep + 'learning' + os.sep + 'data',
+    'save_path': 'Learning' + os.sep + 'static' + os.sep + 'Learning' + os.sep + 'assets',
 }
 
 cols = [
@@ -28,6 +30,7 @@ col_names = [
 ]
 
 translate = {
+    'wait': '等待中',
     'train': '训练中',
     'failure': '训练失败',
     'success': '训练完成',
