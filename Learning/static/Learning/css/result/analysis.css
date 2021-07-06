@@ -1,0 +1,19 @@
+.analysis-container {
+    width: 75%;
+    margin: 1em auto;
+    text-align: center;
+}
+
+.analysis-content {
+    display: inline-block;
+    border: 1px solid rgba(0, 0, 0, .125);
+    padding: 1em 5em .5em 5em;
+    margin-bottom: .5em;
+    text-align: center;
+}
+
+.image-card {
+    width: 75%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 1em auto 3em;
+}
