@@ -11,6 +11,16 @@
         <form method="post" action="/post/" novalidate>
             {% csrf_token %}
             <div class="mb-3">
+                <label for="task" class="form-label">任务名称</label>
+                <input type="text" id="task" name="task" class="form-control" placeholder="Task name" required/>
+                <div class="invalid-feedback">请填写此项</div>
+            </div>
+            <div class="mb-3">
+                <label for="person" class="form-label">发起人</label>
+                <input type="text" id="person" name="person" class="form-control" placeholder="Person name" required/>
+                <div class="invalid-feedback">请填写此项</div>
+            </div>
+            <div class="mb-3">
                 <label for="model" class="form-label">模型结构</label>
                 <select id="model" name="model" class="form-select" required>
                     <option value="LeNet">LeNet</option>
@@ -42,16 +52,6 @@
                 <input type="number" id="epochs" name="epochs" class="form-control" min="1"
                        max="100" step="1" value="10" placeholder="10" required/>
                 <div class="invalid-feedback">请填写1-100的正整数</div>
-            </div>
-            <div class="mb-3">
-                <label for="task" class="form-label">任务名称</label>
-                <input type="text" id="task" name="task" class="form-control" placeholder="Task name" required/>
-                <div class="invalid-feedback">请填写此项</div>
-            </div>
-            <div class="mb-3">
-                <label for="person" class="form-label">发起人</label>
-                <input type="text" id="person" name="person" class="form-control" placeholder="Person name" required/>
-                <div class="invalid-feedback">请填写此项</div>
             </div>
             <button type="submit" class="btn btn-primary">开始训练</button>
         </form>
