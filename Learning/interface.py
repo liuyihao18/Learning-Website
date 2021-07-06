@@ -1,6 +1,8 @@
 import os
 import threading
 
+from django.utils import timezone
+
 from Learning import constants
 from Learning import models
 from Learning.learning import main
@@ -28,10 +30,14 @@ class Task(threading.Thread):
         except Exception as e:
             with open(args['save_path'] + os.sep + 'log' + os.sep + str(self.id) + ".log", 'w') as f:
                 f.write(str(type(e)) + ": " + str(e))
-            obj.state = 'failure'
-            obj.save()
+            if models.ModelInfo.objects.filter(id=self.id):
+                obj.state = 'failure'
+                obj.finish_time = timezone.now()
+                obj.save()
             lock.release()
             return
-        obj.state = 'success'
-        obj.save()
+        if models.ModelInfo.objects.filter(id=self.id):
+            obj.state = 'success'
+            obj.finish_time = timezone.now()
+            obj.save()
         lock.release()
