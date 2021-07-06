@@ -14,7 +14,9 @@ import time
 
 import torch
 import warnings
+import datetime
 
+from Learning.constants import time_pattern
 from Learning.learning.models.lenet import LeNet
 from Learning.learning.utils import data
 from Learning.learning.utils import plot
@@ -72,6 +74,7 @@ def instance(args: dict) -> None:
         print('ID:', args['id'])
         print('Task:', args['task'])
         print('Person:', args['person'])
+        print('Begin time:', datetime.datetime.now().strftime(time_pattern))
 
         # 打印训练信息
         print('Use model:', args['model'])
