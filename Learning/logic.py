@@ -81,3 +81,13 @@ def get_result_context(page, item):
         'return_url': '/result/' + str(page) + '/',
     }
     return context
+
+
+def get_delete_context(page, item):
+    if models.ModelInfo.objects.filter(id=item):
+        obj = models.ModelInfo.objects.get(id=item)
+        obj.delete()
+    context = {
+        'redirect': '/result/' + str(page) + '/',
+    }
+    return context

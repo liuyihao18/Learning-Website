@@ -28,7 +28,8 @@
                             <td>{{ obj.finish_time }}</td>
                             <td><span class="{{ obj.raw_state }}">{{ obj.state }}</span></td>
                             <td><a class="want" href="/result/{{ now_page }}/{{ obj.id }}/log/">训练日志</a> |
-                                <a class="want" href="/result/{{ now_page }}/{{ obj.id }}/result/">查看结果</a>
+                                <a class="want" href="/result/{{ now_page }}/{{ obj.id }}/result/">查看结果</a> |
+                                <a class="want" href="/result/{{ now_page }}/{{ obj.id }}/delete/">删除</a>
                             </td>
                         </tr>
                     {% endfor %}

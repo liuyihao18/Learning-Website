@@ -33,6 +33,8 @@ def result_index(request, page=1, item=1, want='table'):
         context = logic.get_log_context(page, item)
     elif want == 'result':
         context = logic.get_result_context(page, item)
+    elif want == 'delete':
+        context = logic.get_delete_context(page, item)
     else:
         context = {'redirect': '/result/' + str(page) + '/'}
 
