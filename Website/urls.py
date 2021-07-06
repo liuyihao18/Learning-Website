@@ -23,6 +23,8 @@ urlpatterns = [
     path('train/', Learning.views.train_index),
     path('result/', Learning.views.result_index),
     path('result/<int:page>/', Learning.views.result_index),
+    path('result/<int:page>/<int:item>/', Learning.views.result_index),
+    path('result/<int:page>/<int:item>/<str:want>/', Learning.views.result_index),
     path('post/', Learning.views.post),
     path('admin/', admin.site.urls),
 ]

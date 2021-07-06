@@ -31,7 +31,7 @@ def train_index(request):
     return render(request, 'Learning/train.html', context)
 
 
-def result_index(request, page=1):
+def result_index(request, page=1, item=1, want='log'):
     objs = models.ModelInfo.objects.all().order_by('-id')  # 增加'-'表示逆序
     max_page = max(math.ceil(objs.count() / constants.page_size), 1)  # 最大页数
     if page < 1:

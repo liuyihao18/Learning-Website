@@ -25,9 +25,19 @@
                     <td>{{ obj.during_time }}</td>
                     <td>{{ obj.finish_time }}</td>
                     <td>{{ obj.state }}</td>
+                    <td><a class="want" href="/result/{{ now_page }}/{{ obj.id }}/log/">训练日志</a> |
+                        <a class="want" href="/result/{{ now_page }}/{{ obj.id }}/result/">查看结果</a>
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
+        <div class="page-controller">
+            <a class="switch {% if not left_enable %}disabled{% endif %}"
+               {% if left_enable %}href="{{ left_url }}"{% endif %}>上一页</a>
+            &nbsp;第 {{ now_page }} / {{ total_page }} 页&nbsp;
+            <a class="switch {% if not right_enable %}disabled{% endif %}"
+               {% if right_enable %}href="{{ right_url }}"{% endif %}>下一页</a>
+        </div>
     </div>
 {% endblock %}
