@@ -7,12 +7,14 @@
 # @File     : train.py
 
 """
+import sys
+
 import torch
 
 from torch.utils.data import DataLoader
 from torch.utils.data import Dataset
 
-from utils.evaluate import evaluate
+from Learning.learning.utils.evaluate import evaluate
 
 
 def train():
@@ -27,13 +29,10 @@ def train_evaluate(model: torch.nn.Module, train_dataset: Dataset, test_dataset:
     test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=shuffle)  # 加载数据
     criterion = torch.nn.CrossEntropyLoss().to(device)
     if optimizer == 'SGD':
-        print('Use optimizer:', optimizer)
         optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)  # 优化器选用SGD
     elif optimizer == 'Adam':
-        print('Use optimizer:', optimizer)
         optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)  # 优化器选用Adam
     else:
-        print('Use default optimizer:', 'Adam')
         optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)  # 优化器默认选用Adam
 
     # 开始训练
@@ -58,5 +57,7 @@ def train_evaluate(model: torch.nn.Module, train_dataset: Dataset, test_dataset:
         loss_epochs.append(loss_epoch)  # 保存loss
         if evaluate_mode:
             accuracy_epochs.append(evaluate(model, test_loader, device))  # 在测试集上测试
+        print('-----------------------------------------------------------------')
+        sys.stdout.flush()
 
     return loss_epochs, accuracy_epochs

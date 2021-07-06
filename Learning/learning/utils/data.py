@@ -10,7 +10,7 @@
 import torchvision
 
 from torch.utils.data import Dataset
-from utils import pre_process
+from Learning.learning.utils import pre_process
 
 
 def get_mnist_dateset(data_path: str) -> (Dataset, Dataset):
