@@ -6,5 +6,28 @@
 {% endblock %}
 
 {% block main %}
-
+    <div class="table-container">
+        <table class="table">
+            <thead>
+            <tr>
+                {% for col_name in col_names %}
+                    <th scope="col">{{ col_name }}</th>
+                {% endfor %}
+            </tr>
+            </thead>
+            <tbody>
+            {% for obj in objs %}
+                <tr>
+                    <th scope="row">{{ obj.id }}</th>
+                    <td>{{ obj.task }}</td>
+                    <td>{{ obj.person }}</td>
+                    <td>{{ obj.begin_time }}</td>
+                    <td>{{ obj.during_time }}</td>
+                    <td>{{ obj.finish_time }}</td>
+                    <td>{{ obj.state }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

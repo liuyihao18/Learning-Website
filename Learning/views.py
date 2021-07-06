@@ -1,4 +1,5 @@
 import datetime
+import math
 import platform
 import time
 
@@ -31,14 +32,19 @@ def train_index(request):
 
 def result_index(request, page=1):
     objs = models.ModelInfo.objects.all().order_by('-id')  # 增加'-'表示逆序
-
-    print(objs.count())
-    for obj in objs:
-        print(obj.__dict__)
-
-    # TODO: 把数据表用table分页显示出来
+    max_page = math.ceil(objs.count() / constants.page_size)  # 最大页数
+    if page < 1:
+        return redirect('/result/1/')  # 重定向
+    if page > max_page:
+        return redirect('/result/' + str(max_page) + '/')  # 重定向
+    left = (page - 1) * constants.page_size  # 左索引
+    right = min(page * constants.page_size, objs.count())  # 右索引
+    objs = objs[left:right]  # 取出部分数据
     context = {
-        'active': 'result'
+        'active': 'result',
+        'cols': constants.cols,
+        'col_names': constants.col_names,
+        'objs': objs,
     }
     return render(request, 'Learning/result.html', context)
 

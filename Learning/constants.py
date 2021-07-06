@@ -5,4 +5,26 @@ extra_args = {
     'save_path': 'result',
 }
 
+cols = [
+    'id',
+    'task',
+    'person',
+    'begin_time',
+    'during_time',
+    'finish_time',
+    'state',
+    'operate',
+]
+
+col_names = [
+    '#',
+    '任务名称',
+    '发起人',
+    '发起时间',
+    '持续时间',
+    '完成时间',
+    '任务状态',
+    '',
+]
+
 page_size = 10
