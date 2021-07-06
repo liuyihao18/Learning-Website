@@ -1,6 +1,19 @@
-.table-container {
+.table .log-container, .table .result-container {
+    display: none;
+}
+
+.log .table-container, .log .result-container {
+    display: none;
+}
+
+.result .table-container, .result .log-container {
+    display: none;
+}
+
+.table-container, .log-container, .result-container {
     width: 90%;
     margin: 1em auto;
+    text-align: center;
 }
 
 th, td {
@@ -27,7 +40,11 @@ th, td {
     text-decoration: none;
 }
 
+.disabled {
+    color: gray;
+}
+
 .disabled:hover {
-    color: #0d6efd;
+    color: gray;
     cursor: not-allowed;
 }
