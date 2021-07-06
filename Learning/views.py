@@ -30,7 +30,7 @@ def train_index(request):
 
 def result_index(request, page=1, item=1, want='table'):
     if want == 'table':
-        context = logic.get_table_context(page)
+        context = logic.get_task_list_context(page)
     elif want == 'log':
         context = logic.get_log_context(page, item)
     elif want == 'result':
@@ -45,6 +45,27 @@ def result_index(request, page=1, item=1, want='table'):
 
     context['want'] = want
     return render(request, 'Learning/result.html', context)
+
+
+def task_list_index(request, page=None, anything=None):
+    if page is None:
+        return redirect('/result/1/')
+    if anything is not None:
+        return redirect('/result/' + str(page) + '/')
+    context = logic.get_task_list_context(page)
+    return render(request, 'Learning/result/task_list.html', context)
+
+
+def log_index(request, item):
+    pass
+
+
+def analysis_index(request, item):
+    pass
+
+
+def delete(request, item):
+    pass
 
 
 def post(request):

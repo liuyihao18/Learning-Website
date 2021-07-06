@@ -1,0 +1,32 @@
+.table-container {
+    margin: 1em auto;
+    text-align: center;
+}
+
+.table-container {
+    width: 90%;
+}
+
+th, td {
+    text-align: center;
+}
+
+.wait {
+    color: silver;
+}
+
+.train {
+    color: #ffc107;
+}
+
+.success {
+    color: #198754;
+}
+
+.failure {
+    color: #dc3545;
+}
+
+.switch {
+    text-decoration: none;
+}

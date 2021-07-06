@@ -8,7 +8,7 @@ from . import constants
 from . import models
 
 
-def get_table_context(page):
+def get_task_list_context(page):
     objs = models.ModelInfo.objects.all().order_by('-id')  # 增加'-'表示逆序
     max_page = max(math.ceil(objs.count() / constants.page_size), 1)  # 最大页数
     if page < 1:
