@@ -4,3 +4,5 @@ extra_args = {
     'data_path': 'data',
     'save_path': 'result',
 }
+
+page_size = 10
