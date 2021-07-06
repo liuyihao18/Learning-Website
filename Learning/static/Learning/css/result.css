@@ -1,9 +1,9 @@
-.table-container, .log-container, .result-container {
+.task_list-container, .log-container, .result-container {
     margin: 1em auto;
     text-align: center;
 }
 
-.table-container {
+.task_list-container {
     width: 90%;
 }
 
