@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Learning</title>
+    <title>{% block title %}Learning{% endblock %}</title>
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/favicon/favicon.ico' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}"/>
-    {% block css %}
+    {% block head %}
     {% endblock %}
 </head>
 <body>
