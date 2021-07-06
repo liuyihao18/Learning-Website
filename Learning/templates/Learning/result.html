@@ -3,6 +3,7 @@
 
 {% block head %}
     <link rel="stylesheet" type="text/css" href="{% static 'Learning/css/result.css' %}"/>
+    <script src="{% static 'Learning/js/result.js' %}"></script>
 {% endblock %}
 
 {% block main %}
@@ -27,12 +28,12 @@
                             <td>{{ obj.during_time }}</td>
                             <td>{{ obj.finish_time }}</td>
                             <td><span class="{{ obj.raw_state }}">{{ obj.state }}</span></td>
-                            <td><a class="want" href="/result/{{ now_page }}/{{ obj.id }}/log/">日志</a> |
-                                <a class="want {% if not obj.raw_state == 'success' %}disabled{% endif %}"
+                            <td><a class="log-operate" href="/result/{{ now_page }}/{{ obj.id }}/log/">日志</a> |
+                                <a class="result-operate {% if not obj.raw_state == 'success' %}disabled{% endif %}"
                                         {% if obj.raw_state == 'success' %}
                                    href="/result/{{ now_page }}/{{ obj.id }}/result/"
                                         {% endif %}>结果</a> |
-                                <a class="want" href="/result/{{ now_page }}/{{ obj.id }}/delete/">删除</a>
+                                <a class="delete-operate" href="/result/{{ now_page }}/{{ obj.id }}/delete/">删除</a>
                             </td>
                         </tr>
                     {% endfor %}
@@ -49,7 +50,7 @@
         {% endif %}
         {% if want == 'log' %}
             <div class="log-container">
-                <div class="log">{{ log_content }}</div>
+                <div class="log-content">{{ log_content }}</div>
                 <div class="controller">
                     <a class="btn btn-primary" href="{{ return_url }}">返回</a>
                 </div>
@@ -57,6 +58,14 @@
         {% endif %}
         {% if want == 'result' %}
             <div class="result-container">
+                <div class="result-content">
+                    <h3>损失曲线</h3>
+                    <img class="image-card" src="{% static 'Learning/assets/loss_curve/' %}{{ item }}.png"
+                         alt="loss curve"/>
+                    <h3>精度曲线</h3>
+                    <img class="image-card" src="{% static 'Learning/assets/accuracy_curve/' %}{{ item }}.png"
+                         alt="accuracy curve"/>
+                </div>
                 <div class="controller">
                     <a class="btn btn-primary" href="{{ return_url }}">返回</a>
                 </div>

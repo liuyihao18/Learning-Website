@@ -1,28 +1,30 @@
-.table .log-container, .table .result-container {
-    display: none;
-}
-
-.log .table-container, .log .result-container {
-    display: none;
-}
-
-.result .table-container, .result .log-container {
-    display: none;
-}
-
 .table-container, .log-container, .result-container {
     width: 90%;
     margin: 1em auto;
     text-align: center;
 }
 
-.log {
+.log-content, .result-content {
     display: inline-block;
+    border: 1px solid rgba(0, 0, 0, .125);
+    margin-bottom: .5em;
+}
+
+.log-content {
+    padding: .5em 5em;
     text-align: left;
     white-space: pre-line;
-    padding: .5em;
-    margin-bottom: .5em;
-    border: 1px solid rgba(0,0,0,.125);
+}
+
+.result-content {
+    padding: 1em 5em .5em 5em;
+    text-align: center;
+}
+
+.image-card {
+    width: 75%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 1em auto 3em;
 }
 
 th, td {

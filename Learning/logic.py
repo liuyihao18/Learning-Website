@@ -87,6 +87,7 @@ def get_log_context(page, item):
 def get_result_context(page, item):
     context = {
         'return_url': '/result/' + str(page) + '/',
+        'item': item,
     }
     return context
 
