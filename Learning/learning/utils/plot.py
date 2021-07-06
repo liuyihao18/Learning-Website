@@ -35,7 +35,7 @@ def plot_data_curve(data: list[any], save_path: str, name: str, **kwargs) -> Non
     else:
         filename = save_path + os.sep + name
     plt.savefig(fname=filename)
-    plt.show()
+    # plt.show()
 
 
 def plot_loss_curve(loss: list[list[float]], save_path: str, name: str = str(int(time.time()))) -> None:
