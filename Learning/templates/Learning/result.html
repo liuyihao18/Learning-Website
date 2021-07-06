@@ -27,15 +27,18 @@
                             <td>{{ obj.during_time }}</td>
                             <td>{{ obj.finish_time }}</td>
                             <td><span class="{{ obj.raw_state }}">{{ obj.state }}</span></td>
-                            <td><a class="want" href="/result/{{ now_page }}/{{ obj.id }}/log/">训练日志</a> |
-                                <a class="want" href="/result/{{ now_page }}/{{ obj.id }}/result/">查看结果</a> |
+                            <td><a class="want" href="/result/{{ now_page }}/{{ obj.id }}/log/">日志</a> |
+                                <a class="want {% if not obj.raw_state == 'success' %}disabled{% endif %}"
+                                        {% if obj.raw_state == 'success' %}
+                                   href="/result/{{ now_page }}/{{ obj.id }}/result/"
+                                        {% endif %}>结果</a> |
                                 <a class="want" href="/result/{{ now_page }}/{{ obj.id }}/delete/">删除</a>
                             </td>
                         </tr>
                     {% endfor %}
                     </tbody>
                 </table>
-                <div class="page-controller">
+                <div class="controller">
                     <a class="switch {% if not left_enable %}disabled{% endif %}"
                        {% if left_enable %}href="{{ left_url }}"{% endif %}>上一页</a>
                     &nbsp;第 {{ now_page }} / {{ total_page }} 页&nbsp;
@@ -46,15 +49,17 @@
         {% endif %}
         {% if want == 'log' %}
             <div class="log-container">
-                <div class="log">
-                    {{ log }}
+                <div class="log">{{ log_content }}</div>
+                <div class="controller">
+                    <a class="btn btn-primary" href="{{ return_url }}">返回</a>
                 </div>
-                <a class="btn btn-primary" href="{{ return_url }}">返回</a>
             </div>
         {% endif %}
         {% if want == 'result' %}
             <div class="result-container">
-                <a class="btn btn-primary" href="{{ return_url }}">返回</a>
+                <div class="controller">
+                    <a class="btn btn-primary" href="{{ return_url }}">返回</a>
+                </div>
             </div>
         {% endif %}
     </div>
