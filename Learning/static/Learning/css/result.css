@@ -1,7 +1,14 @@
 .table-container, .log-container, .result-container {
-    width: 90%;
     margin: 1em auto;
     text-align: center;
+}
+
+.table-container {
+    width: 90%;
+}
+
+.log-container, .result-container {
+    width: 75%;
 }
 
 .log-content, .result-content {
