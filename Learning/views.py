@@ -6,7 +6,7 @@ import torch
 from django.shortcuts import redirect
 from django.shortcuts import render
 
-from Learning import interface
+from Learning import task
 from Learning import logic
 from Learning import models
 
@@ -76,6 +76,6 @@ def post(request):
         'state': 'wait',
     }
     models.ModelInfo.objects.create(**args)
-    task = interface.Task(models.ModelInfo.objects.last().id)
+    task = task.Task(models.ModelInfo.objects.last().id)
     task.start()
     return redirect('/result/1/')
