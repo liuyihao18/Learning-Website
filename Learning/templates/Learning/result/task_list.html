@@ -36,6 +36,10 @@
                                     {% if obj.raw_state == 'success' %}
                                href="/result/{{ now_page }}/{{ obj.id }}/analysis/"
                                     {% endif %}>结果</a> |
+                            <a class="result-operate {% if not obj.raw_state == 'success' %}disabled{% endif %}"
+                                    {% if obj.raw_state == 'success' %}
+                               href="{% static 'Learning/assets/model/' %}{{ obj.id }}.pth"
+                                    {% endif %}>下载</a> |
                             <a class="delete-operate" href="/result/{{ now_page }}/{{ obj.id }}/delete/">删除</a>
                         </td>
                     </tr>
