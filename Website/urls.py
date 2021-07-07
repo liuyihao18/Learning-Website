@@ -23,7 +23,8 @@ urlpatterns = [
     path('train/', Learning.views.train_index),  # 训练
     path('result/', Learning.views.task_list_index),  # 结果 -- 任务列表
     path('result/clean', Learning.views.clean),  # 结果 -- 清理
-    path('result/<int:page>/', Learning.views.task_list_index),  # 结果 -- 人物列表
+    path('result/<int:page>/', Learning.views.task_list_index),  # 结果 -- 任务列表
+    path('result/<int:page>/<str:anything>/', Learning.views.task_list_index),  # 结果 -- 任务列表
     path('result/<int:page>/<int:item>/log/', Learning.views.log_index),  # 结果 -- 日志
     path('result/<int:page>/<int:item>/analysis/', Learning.views.analysis_index),  # 结果 -- 分析
     path('result/<int:page>/<int:item>/delete/', Learning.views.delete),  # 结果 -- 删除
