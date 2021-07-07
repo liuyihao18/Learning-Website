@@ -40,7 +40,7 @@ def plot_data_curve(data: List[any], save_path: str, name: str, **kwargs) -> Non
     # plt.show()
 
 
-def plot_loss_curve(loss: list[list[float]], save_path: str, name: str = str(int(time.time()))) -> None:
+def plot_loss_curve(loss: List[List[float]], save_path: str, name: str = str(int(time.time()))) -> None:
     """
     :param loss: 一维列表，(i)代表第i个epoch中的accuracy
     :param save_path: 保存图片的文件夹路径
@@ -54,13 +54,13 @@ def plot_loss_curve(loss: list[list[float]], save_path: str, name: str = str(int
                     title='Loss Curve')
 
 
-def plot_accuracy_curve(accuracy: list[float], save_path: str, name: str = str(int(time.time()))) -> None:
+def plot_accuracy_curve(accuracy: List[float], save_path: str, name: str = str(int(time.time()))) -> None:
     """
     :param accuracy: 一维列表，(i)代表第i个epoch中的accuracy
     :param save_path: 保存图片的文件夹路径
     :param name:  保存图片的名称
     :return: figure
     """
-    # 绘制图像
+    # 绘制图像g
     plot_data_curve(accuracy, save_path, name, label='accuracy', color='coral', xlabel='epoch', ylabel='accuracy',
                     title='Accuracy Curve')
