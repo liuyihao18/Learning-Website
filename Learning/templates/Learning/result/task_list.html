@@ -50,12 +50,12 @@
                 </tbody>
             </table>
         </div>
-        <div class="controller">
-            <a class="switch {% if not left_enable %}disabled{% endif %}"
-               {% if left_enable %}href="{{ left_url }}"{% endif %}>上一页</a>
-            &nbsp;第 {{ now_page }} / {{ total_page }} 页&nbsp;
-            <a class="switch {% if not right_enable %}disabled{% endif %}"
-               {% if right_enable %}href="{{ right_url }}"{% endif %}>下一页</a>
-        </div>
+    </div>
+    <div class="controller">
+        <a class="switch {% if not left_enable %}disabled{% endif %}"
+           {% if left_enable %}href="{{ left_url }}"{% endif %}>上一页</a>
+        &nbsp;第 {{ now_page }} / {{ total_page }} 页&nbsp;
+        <a class="switch {% if not right_enable %}disabled{% endif %}"
+           {% if right_enable %}href="{{ right_url }}"{% endif %}>下一页</a>
     </div>
 {% endblock %}

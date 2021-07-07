@@ -2,14 +2,66 @@
 {% load static %}
 
 {% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'Learning/css/result/task_list.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'Learning/css/result/log.css' %}"/>
+    <script src="{% static 'Learning/js/result/task_list.js' %}"></script>
 {% endblock %}
 
 {% block main %}
-    <div class="log-container">
-        <div class="log-content">{{ log_content }}</div>
-        <div class="controller">
-            <a class="btn btn-primary" href="{{ return_url }}">返回</a>
+    {% if not not_found %}
+        <div class="task_list-container">
+            <div class="task_list-content">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        {% for col_name in col_names %}
+                            <th scope="col">{{ col_name }}</th>
+                        {% endfor %}
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">{{ obj.item }}</th>
+                        <td>{{ obj.task }}</td>
+                        <td>{{ obj.person }}</td>
+                        <td>{{ obj.add_time }}</td>
+                        <td>{{ obj.during_time }}</td>
+                        <td>{{ obj.finish_time }}</td>
+                        <td><span class="{{ obj.raw_state }}">{{ obj.state }}</span></td>
+                        <td>
+                            <a class="log-operate {% if obj.raw_state == 'wait' %}disabled{% endif %}"
+                                    {% if not obj.raw_state == 'wait' %}
+                               href="/result/{{ now_page }}/{{ obj.id }}/log/"
+                                    {% endif %}>日志</a> |
+                            <a class="result-operate {% if not obj.raw_state == 'success' %}disabled{% endif %}"
+                                    {% if obj.raw_state == 'success' %}
+                               href="/result/{{ now_page }}/{{ obj.id }}/analysis/"
+                                    {% endif %}>分析</a> |
+                            <a class="download-operate {% if not obj.raw_state == 'success' %}disabled{% endif %}"
+                                    {% if obj.raw_state == 'success' %}
+                               href="{% static 'Learning/assets/model/' %}{{ obj.id }}.pth"
+                                    {% endif %}>下载</a> |
+                            <a class="delete-operate {% if obj.raw_state == 'train' %}disabled{% endif %}"
+                                    {% if not obj.raw_state == 'train' %}
+                               href="/result/{{ now_page }}/{{ obj.id }}/delete/"
+                                    {% endif %}>删除</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
+    {% endif %}
+    <div class="log-container">
+        <div class="log-content">
+            {% if not_found %}
+                404 Not Found!
+            {% else %}
+                <span style="white-space: pre-line">{{ log_content }}</span>
+            {% endif %}
+        </div>
+    </div>
+    <div class="controller">
+        <a class="btn btn-primary" href="{{ return_url }}">返回</a>
     </div>
 {% endblock %}
