@@ -9,6 +9,32 @@
 
 th, td {
     text-align: center;
+    vertical-align: middle;
+    word-break: break-all;
+}
+
+th:nth-child(1) {
+    width: 1em;
+}
+
+th:nth-child(3) {
+    width: 4em;
+}
+
+th:nth-child(4), th:nth-child(6) {
+    width: 9.5em;
+}
+
+th:nth-child(5) {
+    width: 5.5em;
+}
+
+th:nth-child(7) {
+    width: 5em;
+}
+
+th:nth-child(8) {
+    width: 12em;
 }
 
 .wait {
