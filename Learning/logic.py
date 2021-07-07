@@ -38,6 +38,7 @@ def change(obj):
     }
 
 
+# 获取任务列表的内容
 def get_task_list_context(page):
     objs = models.ModelInfo.objects.all().order_by('-id')  # 增加'-'表示逆序
     max_page = max(math.ceil(objs.count() / constants.page_size), 1)  # 最大页数
@@ -78,20 +79,24 @@ def get_task_list_context(page):
     return context
 
 
+# 获取日志页面内容
 def get_log_context(page, item):
     context = {
         'return_url': '/result/' + str(page) + '/',
         'col_names': constants.col_names,
         'now_page': page,
     }
+    # 如果当前item不存在
     if not models.ModelInfo.objects.filter(id=item):
         context['not_found'] = True
+    # 如果当前item存在
     else:
         # 补充对象信息
         obj = models.ModelInfo.objects.get(id=item)
         obj = change(obj)
         obj['item'] = '*'
         context['obj'] = obj
+        # 获取log内容
         try:
             log = open(
                 constants.extra_args['save_path'] + os.sep + constants.extra_args['log'] + os.sep + str(item) + ".log",
@@ -104,6 +109,7 @@ def get_log_context(page, item):
     return context
 
 
+# 获取分析页面内容
 def get_analysis_context(page, item):
     context = {
         'return_url': '/result/' + str(page) + '/',
@@ -124,6 +130,7 @@ def get_analysis_context(page, item):
     return context
 
 
+# 删除项目相关的文件
 def delete(item):
     extension = {
         'model': '.pth',
@@ -143,24 +150,35 @@ def delete(item):
             pass
 
 
+# 获取删除相关的内容
 def get_delete_context(page, item):
+    # 如果当前item存在
     if models.ModelInfo.objects.filter(id=item):
+        # 删除数据库
         obj = models.ModelInfo.objects.get(id=item)
         obj.delete()
+        # 删除存储
         delete(item)
+    # 重定向
     context = {
         'redirect': '/result/' + str(page) + '/',
     }
     return context
 
 
+# 获取清理相关的内容
 def get_clean_context():
+    # 正则表达式捕获
     reg = re.compile(r'^([0-9]*).\w*?$')
+    # 需要清理的文件夹
     for sub_save_path in constants.sub_save_paths:
+        # 需要清理的文件
         filenames = os.listdir(constants.extra_args['save_path'] + os.sep + sub_save_path)
         for filename in filenames:
             try:
+                # 根据文件名获取数据库id
                 item = int(reg.match(filename).group(1))
+                # 判断是否存在于数据库，如果不存在，则删除残留文件
                 if not models.ModelInfo.objects.filter(id=item):
                     os.remove(constants.extra_args['save_path'] + os.sep + sub_save_path + os.sep + filename)
             except ValueError:
@@ -169,6 +187,7 @@ def get_clean_context():
                 pass
             except PermissionError:
                 pass
+    # 重定向
     context = {
         'redirect': '/result/1/',
     }
