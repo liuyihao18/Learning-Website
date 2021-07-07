@@ -103,26 +103,22 @@ def get_delete_context(page, item):
     if models.ModelInfo.objects.filter(id=item):
         obj = models.ModelInfo.objects.get(id=item)
         obj.delete()
-        try:
-            # 删除log
-            os.remove(
-                constants.extra_args['save_path'] + os.sep + constants.extra_args['log'] + os.sep + str(item) + ".log")
-        except FileNotFoundError:
-            pass
-        try:
-            # 删除loss curve
-            os.remove(
-                constants.extra_args['save_path'] + os.sep + constants.extra_args['loss_curve'] + os.sep + str(
-                    item) + ".png")
-        except FileNotFoundError:
-            pass
-        try:
-            # 删除accuracy_curve
-            os.remove(
-                constants.extra_args['save_path'] + os.sep + constants.extra_args['accuracy_curve'] + os.sep + str(
-                    item) + ".log")
-        except FileNotFoundError:
-            pass
+        extension = {
+            'model': '.pth',
+            'log': '.log',
+            'loss_curve': '.png',
+            'accuracy_curve': '.png',
+        }
+        sub_paths = ['loss_curve', 'accuracy_curve', 'log', 'model']
+        for sub_path in sub_paths:
+            try:
+                print(constants.extra_args['save_path'] + os.sep + constants.extra_args[sub_path] + os.sep + str(item) +
+                      extension[sub_path])
+                os.remove(
+                    constants.extra_args['save_path'] + os.sep + constants.extra_args[sub_path] + os.sep + str(item) +
+                    extension[sub_path])
+            except FileNotFoundError:
+                pass
     context = {
         'redirect': '/result/' + str(page) + '/',
     }
