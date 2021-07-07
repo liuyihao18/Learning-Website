@@ -6,6 +6,7 @@ from django.utils import timezone
 from Learning import constants
 from Learning import models
 from Learning.learning import main
+from Learning.logic import delete
 
 lock = threading.Lock()
 
@@ -36,10 +37,14 @@ class Task(threading.Thread):
                 obj.state = 'failure'
                 obj.finish_time = timezone.now()
                 obj.save()
+            else:
+                delete(self.id)
             lock.release()
             return
         if models.ModelInfo.objects.filter(id=self.id):
             obj.state = 'success'
             obj.finish_time = timezone.now()
             obj.save()
+        else:
+            delete(self.id)
         lock.release()
