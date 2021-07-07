@@ -17,6 +17,7 @@ import warnings
 import datetime
 
 from Learning.constants import time_pattern
+from Learning.constants import sub_save_paths
 from Learning.learning.models.lenet import LeNet
 from Learning.learning.utils import data
 from Learning.learning.utils import plot
@@ -50,7 +51,6 @@ def initialize(data_path: str, save_path: str) -> None:
         os.mkdir(save_path)
     except FileExistsError:
         pass
-    sub_save_paths = ['loss_curve', 'accuracy_curve', 'log', 'model']
     for sub_save_path in sub_save_paths:
         try:
             os.mkdir(save_path + os.sep + sub_save_path)
