@@ -35,7 +35,7 @@
                             <a class="result-operate {% if not obj.raw_state == 'success' %}disabled{% endif %}"
                                     {% if obj.raw_state == 'success' %}
                                href="/result/{{ now_page }}/{{ obj.id }}/analysis/"
-                                    {% endif %}>结果</a> |
+                                    {% endif %}>分析</a> |
                             <a class="download-operate {% if not obj.raw_state == 'success' %}disabled{% endif %}"
                                     {% if obj.raw_state == 'success' %}
                                href="{% static 'Learning/assets/model/' %}{{ obj.id }}.pth"
