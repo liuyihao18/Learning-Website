@@ -6,9 +6,9 @@ import torch
 from django.shortcuts import redirect
 from django.shortcuts import render
 
-from Learning import task
 from Learning import logic
 from Learning import models
+from Learning.task import Task
 
 
 # Create your views here.
@@ -76,6 +76,6 @@ def post(request):
         'state': 'wait',
     }
     models.ModelInfo.objects.create(**args)
-    task = task.Task(models.ModelInfo.objects.last().id)
+    task = Task(models.ModelInfo.objects.last().id)
     task.start()
     return redirect('/result/1/')
