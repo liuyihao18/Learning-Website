@@ -4,9 +4,10 @@
 # -*- coding: utf-8 -*-
 
 # @Time     : 2021/7/4 16:12
-# @File     : train.py
+# @File     : operate.py
 
 """
+import os
 import sys
 
 import torch
@@ -14,11 +15,25 @@ import torch
 from torch.utils.data import DataLoader
 from torch.utils.data import Dataset
 
-from Learning.learning.utils.evaluate import evaluate
-
 
 def train():
     pass
+
+
+def evaluate(model: torch.nn.Module, test_loader: DataLoader, device: torch.device) -> float:
+    model.eval()  # 验证模式
+    correct = 0  # 正确
+    total = 0  # 总数
+    with torch.no_grad():
+        for data, labels in test_loader:
+            data, labels = data.to(device), labels.to(device)
+            outputs = model(data)
+            _, predicted = torch.max(outputs.data, 1)
+            correct += (predicted == labels).sum().item()
+            total += len(labels)
+
+    print('Test Accuracy of the model is: {} %'.format(100 * correct / total))
+    return correct / total
 
 
 def train_evaluate(model: torch.nn.Module, train_dataset: Dataset, test_dataset: Dataset,
@@ -61,3 +76,14 @@ def train_evaluate(model: torch.nn.Module, train_dataset: Dataset, test_dataset:
         sys.stdout.flush()
 
     return loss_epochs, accuracy_epochs
+
+
+def save(model: torch.nn.Module, save_path: str, name: str) -> None:
+    if save_path.endswith(os.sep):
+        filename = save_path + name + '.pth'
+    else:
+        filename = save_path + os.sep + name + '.pth'
+    pt_dict = {
+        'state_dict': model.state_dict()
+    }
+    torch.save(pt_dict, filename)

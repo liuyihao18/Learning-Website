@@ -20,7 +20,8 @@ from Learning.constants import time_pattern
 from Learning.learning.models.lenet import LeNet
 from Learning.learning.utils import data
 from Learning.learning.utils import plot
-from Learning.learning.utils.train import train_evaluate
+from Learning.learning.utils.operate import save
+from Learning.learning.utils.operate import train_evaluate
 
 warnings.filterwarnings("ignore")  # 忽略Pytorch奇怪的警告
 
@@ -49,7 +50,7 @@ def initialize(data_path: str, save_path: str) -> None:
         os.mkdir(save_path)
     except FileExistsError:
         pass
-    sub_save_paths = ['loss_curve', 'accuracy_curve', 'log']
+    sub_save_paths = ['loss_curve', 'accuracy_curve', 'log', 'model']
     for sub_save_path in sub_save_paths:
         try:
             os.mkdir(save_path + os.sep + sub_save_path)
@@ -103,7 +104,7 @@ def instance(args: dict) -> None:
         model = LeNet(num_classes=args['num_classes'])
     else:
         model = LeNet(num_classes=args['num_classes'])
-    
+
     # 模型训练
     loss, accuracy = train_evaluate(model=model, train_dataset=train_dataset, test_dataset=test_dataset,
                                     epochs=args['epochs'], batch_size=args['batch_size'],
@@ -114,6 +115,10 @@ def instance(args: dict) -> None:
     plot.plot_loss_curve(loss=loss, save_path=args['save_path'] + os.sep + args['loss_curve'], name=name)
     plot.plot_accuracy_curve(accuracy=accuracy, save_path=args['save_path'] + os.sep + args['accuracy_curve'],
                              name=name)
+    # 保存模型
+    save(model=model, save_path=args['save_path'] + os.sep + args['model'], name=name)
+
+    # 关闭日志
     log.close()
 
     if __name__ == '__main__':
