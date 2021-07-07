@@ -110,12 +110,12 @@ def get_delete_context(page, item):
             'loss_curve': '.png',
             'accuracy_curve': '.png',
         }
-        sub_paths = ['loss_curve', 'accuracy_curve', 'log', 'model']
-        for sub_path in sub_paths:
+        for sub_save_path in constants.sub_save_paths:
             try:
                 os.remove(
-                    constants.extra_args['save_path'] + os.sep + constants.extra_args[sub_path] + os.sep + str(item) +
-                    extension[sub_path])
+                    constants.extra_args['save_path'] + os.sep + constants.extra_args[sub_save_path] + os.sep + str(
+                        item) +
+                    extension[sub_save_path])
             except FileNotFoundError:
                 pass
     context = {
@@ -125,15 +125,14 @@ def get_delete_context(page, item):
 
 
 def get_clean_context():
-    sub_paths = ['loss_curve', 'accuracy_curve', 'log', 'model']
     reg = re.compile(r'^([0-9]*).\w*?$')
-    for sub_path in sub_paths:
-        filenames = os.listdir(constants.extra_args['save_path'] + os.sep + sub_path)
+    for sub_save_path in constants.sub_save_paths:
+        filenames = os.listdir(constants.extra_args['save_path'] + os.sep + sub_save_path)
         for filename in filenames:
             try:
                 item = int(reg.match(filename).group(1))
                 if not models.ModelInfo.objects.filter(id=item):
-                    os.remove(constants.extra_args['save_path'] + os.sep + sub_path + os.sep + filename)
+                    os.remove(constants.extra_args['save_path'] + os.sep + sub_save_path + os.sep + filename)
             except Exception as e:
                 pass
     context = {

@@ -11,6 +11,8 @@ extra_args = {
     'accuracy_curve': 'accuracy_curve',
 }
 
+sub_save_paths = ['loss_curve', 'accuracy_curve', 'log', 'model']
+
 cols = [
     'id',
     'task',
