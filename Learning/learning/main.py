@@ -68,6 +68,7 @@ def instance(args: dict) -> None:
     name = str(args['id'])
     # 重定向
     log = open(args['save_path'] + os.sep + args['log'] + os.sep + name + ".log", 'w')
+    stdout = sys.stdout
     sys.stdout = log
 
     print('--------------------------------------------------------------------')
@@ -120,7 +121,9 @@ def instance(args: dict) -> None:
 
     # 关闭日志
     log.close()
+    sys.stdout = stdout
 
-    if __name__ == '__main__':
-        # 调用入口函数
-        instance(parse_args().__dict__)
+
+if __name__ == '__main__':
+    # 调用入口函数
+    instance(parse_args().__dict__)
