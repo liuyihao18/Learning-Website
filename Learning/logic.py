@@ -56,9 +56,9 @@ def get_task_list_context(page):
 
     # 左右切换
     left_enable = True
-    left_url = '/result/' + str(min(1, page - 1)) + '/'
+    left_url = '/result/' + str(max(1, page - 1)) + '/'
     right_enable = True
-    right_url = '/result/' + str(max(max_page, page + 1)) + '/'
+    right_url = '/result/' + str(min(max_page, page + 1)) + '/'
     if page == 1:
         left_enable = False
     if page == max_page:
