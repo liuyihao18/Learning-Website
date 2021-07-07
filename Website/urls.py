@@ -19,14 +19,14 @@ from django.contrib import admin
 from django.urls import path
 
 urlpatterns = [
-    path('', Learning.views.learning_index),
-    path('train/', Learning.views.train_index),
-    path('result/', Learning.views.task_list_index),
-    path('result/clean', Learning.views.clean),
-    path('result/<int:page>/', Learning.views.task_list_index),
-    path('result/<int:page>/<int:item>/log/', Learning.views.log_index),
-    path('result/<int:page>/<int:item>/analysis/', Learning.views.analysis_index),
-    path('result/<int:page>/<int:item>/delete/', Learning.views.delete),
-    path('post/', Learning.views.post),
-    path('admin/', admin.site.urls),
+    path('', Learning.views.learning_index),  # 主页
+    path('train/', Learning.views.train_index),  # 训练
+    path('result/', Learning.views.task_list_index),  # 结果 -- 任务列表
+    path('result/clean', Learning.views.clean),  # 结果 -- 清理
+    path('result/<int:page>/', Learning.views.task_list_index),  # 结果 -- 人物列表
+    path('result/<int:page>/<int:item>/log/', Learning.views.log_index),  # 结果 -- 日志
+    path('result/<int:page>/<int:item>/analysis/', Learning.views.analysis_index),  # 结果 -- 分析
+    path('result/<int:page>/<int:item>/delete/', Learning.views.delete),  # 结果 -- 删除
+    path('post/', Learning.views.post),  # 上传
+    path('admin/', admin.site.urls),  # 管理
 ]
