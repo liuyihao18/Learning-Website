@@ -13,8 +13,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 import time
 
+from typing import List
 
-def plot_data_curve(data: list[any], save_path: str, name: str, **kwargs) -> None:
+
+def plot_data_curve(data: List[any], save_path: str, name: str, **kwargs) -> None:
     """
     :param data: 二维列表，(i, j)代表每一个数值是第i个epoch中第j个batch的loss
     :param save_path: 保存图片的文件夹路径
