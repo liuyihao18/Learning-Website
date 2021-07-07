@@ -13,6 +13,15 @@ extra_args = {
 
 sub_save_paths = ['loss_curve', 'accuracy_curve', 'log', 'model']
 
+model_options = [
+    'LeNet',
+]
+
+optimizer_options = [
+    'Adam',
+    'SGD',
+]
+
 cols = [
     'id',
     'task',

@@ -6,6 +6,7 @@ import torch
 from django.shortcuts import redirect
 from django.shortcuts import render
 
+from Learning import constants
 from Learning import logic
 from Learning import models
 from Learning.task import Task
@@ -23,7 +24,9 @@ def learning_index(request):
 
 def train_index(request):
     context = {
-        'active': 'train'
+        'active': 'train',
+        'model_options': constants.model_options,
+        'optimizer_options': constants.optimizer_options,
     }
     return render(request, 'Learning/train.html', context)
 

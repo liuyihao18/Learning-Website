@@ -23,15 +23,18 @@
             <div class="mb-3">
                 <label for="model" class="form-label">模型结构</label>
                 <select id="model" name="model" class="form-select" required>
-                    <option value="LeNet">LeNet</option>
+                    {% for model_option in model_options %}
+                        <option value="{{ model_option }}">{{ model_option }}</option>
+                    {% endfor %}
                 </select>
                 <div class="invalid-feedback">请选择一项</div>
             </div>
             <div class="mb-3">
                 <label for="optimizer" class="form-label">优化器</label>
                 <select id="optimizer" name="optimizer" class="form-select" required>
-                    <option value="Adam">Adam</option>
-                    <option value="SGD">SGD</option>
+                    {% for optimizer_option in optimizer_options %}
+                        <option value="{{ optimizer_option }}">{{ optimizer_option }}</option>
+                    {% endfor %}
                 </select>
                 <div class="invalid-feedback">请选择一项</div>
             </div>
