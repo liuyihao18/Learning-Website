@@ -7,4 +7,5 @@ Learning/learning/data
 Learning/static/Learning/assets/accuracy_curve
 Learning/static/Learning/assets/loss_curve
 Learning/static/Learning/assets/log
+Learning/static/Learning/assets/model
 db.sqlite3
