@@ -14,6 +14,7 @@ import torch
 
 from torch.utils.data import DataLoader
 from torch.utils.data import Dataset
+from typing import List
 
 
 def train():
@@ -39,7 +40,7 @@ def evaluate(model: torch.nn.Module, test_loader: DataLoader, device: torch.devi
 def train_evaluate(model: torch.nn.Module, train_dataset: Dataset, test_dataset: Dataset,
                    epochs: int, batch_size: int, learning_rate: float, optimizer: str,
                    shuffle: bool = True, device: torch.device = torch.device('cpu'), evaluate_mode: bool = True
-                   ) -> (list[list[float]], list[float]):
+                   ) -> (List[List[float]], List[float]):
     train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=shuffle)  # 加载数据
     test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=shuffle)  # 加载数据
     criterion = torch.nn.CrossEntropyLoss().to(device)
