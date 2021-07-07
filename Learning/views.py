@@ -58,6 +58,11 @@ def delete(request, page, item):
     return redirect(context['redirect'])
 
 
+def clean(request):
+    context = logic.get_clean_context()
+    return redirect(context['redirect'])
+
+
 def post(request):
     args = {
         'id': int(time.time() * 1000),

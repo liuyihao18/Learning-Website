@@ -22,6 +22,7 @@ urlpatterns = [
     path('', Learning.views.learning_index),
     path('train/', Learning.views.train_index),
     path('result/', Learning.views.task_list_index),
+    path('result/clean', Learning.views.clean),
     path('result/<int:page>/', Learning.views.task_list_index),
     path('result/<int:page>/<int:item>/log/', Learning.views.log_index),
     path('result/<int:page>/<int:item>/analysis/', Learning.views.analysis_index),

@@ -1,6 +1,7 @@
 import math
 import datetime
 import os
+import re
 
 from django.utils import timezone
 
@@ -112,8 +113,6 @@ def get_delete_context(page, item):
         sub_paths = ['loss_curve', 'accuracy_curve', 'log', 'model']
         for sub_path in sub_paths:
             try:
-                print(constants.extra_args['save_path'] + os.sep + constants.extra_args[sub_path] + os.sep + str(item) +
-                      extension[sub_path])
                 os.remove(
                     constants.extra_args['save_path'] + os.sep + constants.extra_args[sub_path] + os.sep + str(item) +
                     extension[sub_path])
@@ -121,5 +120,23 @@ def get_delete_context(page, item):
                 pass
     context = {
         'redirect': '/result/' + str(page) + '/',
+    }
+    return context
+
+
+def get_clean_context():
+    sub_paths = ['loss_curve', 'accuracy_curve', 'log', 'model']
+    reg = re.compile(r'^([0-9]*).\w*?$')
+    for sub_path in sub_paths:
+        filenames = os.listdir(constants.extra_args['save_path'] + os.sep + sub_path)
+        for filename in filenames:
+            try:
+                item = int(reg.match(filename).group(1))
+                if not models.ModelInfo.objects.filter(id=item):
+                    os.remove(constants.extra_args['save_path'] + os.sep + sub_path + os.sep + filename)
+            except Exception as e:
+                pass
+    context = {
+        'redirect': '/result/1/',
     }
     return context
